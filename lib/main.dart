@@ -44,9 +44,13 @@ class _BookFirebaseDemoState extends State<BookFirebaseDemo> {
 
   Book currentBook;
 
+  //read method
+
   getAllBooks(){
     return Firestore.instance.collection(firestoreCollectionName).snapshots();
   }
+
+  //create method
 
   addBook() async {
     Book book = Book(bookName: bookNameController.text, authorName: bookAuthorController.text);
@@ -62,6 +66,8 @@ class _BookFirebaseDemoState extends State<BookFirebaseDemo> {
     }
   }
 
+  //Update mehtod
+
   updateBook(Book book, String bookName, String authorName){
 
     try{
@@ -75,6 +81,7 @@ class _BookFirebaseDemoState extends State<BookFirebaseDemo> {
     }
   }
 
+  //update checking is editing enable or disable
   updateIfEditing(){
     if(isEditiong){
       updateBook(currentBook, bookNameController.text, bookAuthorController.text);
@@ -83,6 +90,8 @@ class _BookFirebaseDemoState extends State<BookFirebaseDemo> {
       });
     }
   }
+
+  //delete mehtod
 
   deleteBook(Book book){
     Firestore.instance.runTransaction((transaction) async {
